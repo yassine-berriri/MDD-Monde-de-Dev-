@@ -10,9 +10,9 @@ public interface IPostService {
 
     List<Post> findAll();
 
-    Post getById(Long id, Post post);
+    Post getById(Long id);
 
-
+    List<Post> sort(boolean isDesc);
 
 
 }
