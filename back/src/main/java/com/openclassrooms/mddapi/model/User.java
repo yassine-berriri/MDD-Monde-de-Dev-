@@ -45,13 +45,6 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "PARTICIPATE",
-            joinColumns = @JoinColumn( name = "user_id" ),
-            inverseJoinColumns = @JoinColumn( name = "topic_id" ) )
-    private List<Topic> topics;
-
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

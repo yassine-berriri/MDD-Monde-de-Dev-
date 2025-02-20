@@ -9,5 +9,7 @@ public class PostService implements IPostService {
 	public PostService(PostRepository postRepository) {
 		this.postRepository = postRepository;
 	}
+
+
 	
 }
