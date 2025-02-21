@@ -45,6 +45,27 @@ public class PostController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPostById(@PathVariable("id") String id){
+        try {
+            Post post = this.postService.getById(Long.valueOf(id));
+
+            if (post == null){
+                return ResponseEntity.notFound().build();
+            }
+
+            return ResponseEntity.ok().body(this.postMapper.toDto(post));
+        }catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/sort")
+    public List<Post> getSortedPosts(@RequestParam(defaultValue = "false") boolean isDesc) {
+        return postService.sort(isDesc);
+    }
+
+
 
 
 
