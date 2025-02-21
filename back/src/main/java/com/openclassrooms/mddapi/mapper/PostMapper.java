@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.dto.PostDto;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.service.CommentService;
 import com.openclassrooms.mddapi.service.TopicService;
 import com.openclassrooms.mddapi.service.UserService;
 import org.mapstruct.Mapper;
@@ -25,12 +26,14 @@ public abstract class PostMapper {
 
     @Autowired
     protected UserService userService;
+
+    @Autowired
+    protected CommentService commentService;
     @Mappings({
             @Mapping(source = "description", target = "description"),
             @Mapping(target = "topic", expression = "java(postDto.getTopic_id() != null ? this.topicService.findById(postDto.getTopic_id()) : null)"),
             @Mapping(target = "user", expression = "java(postDto.getUser_id() != null ? this.userService.findById(postDto.getUser_id()) : null)"),
-
-            //@Mapping(target = "user", expression = "java(Optional.ofNullable(sessionDto.getUsers()).orElseGet(Collections::emptyList).stream().map(user_id -> { User user = this.userService.findById(user_id); if (user != null) { return user; } return null; }).collect(Collectors.toList()))"),
+            @Mapping(target = "comments", expression = "java(Optional.ofNullable(postDto.getComments()).orElseGet(Collections::emptyList))"),
     })
     public abstract Post toEntity(PostDto postDto);
 

@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,14 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "comments")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
+@ToString(exclude = "post")
 public class Comment {
 
 	@Id
@@ -27,8 +30,12 @@ public class Comment {
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 
-	@ManyToOne
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "post_id", referencedColumnName = "post_id")
+	@JsonBackReference
+	@JsonIgnore
 	private Post post;
 
 	@Column(name = "description")
