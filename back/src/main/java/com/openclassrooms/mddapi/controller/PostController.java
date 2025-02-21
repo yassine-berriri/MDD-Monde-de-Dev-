@@ -61,9 +61,12 @@ public class PostController {
     }
 
     @GetMapping("/sort")
-    public List<Post> getSortedPosts(@RequestParam(defaultValue = "false") boolean isDesc) {
-        return postService.sort(isDesc);
+    public List<Post> getSortedPosts(@RequestParam(name = "isDesc", required = false, defaultValue = "false") String isDesc) {
+        boolean isDescBoolean = (isDesc != null && (isDesc.equalsIgnoreCase("true,") || isDesc.equalsIgnoreCase("true,true")) );
+
+        return postService.sort(isDescBoolean);
     }
+
 
 
 

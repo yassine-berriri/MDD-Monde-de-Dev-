@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -33,11 +34,7 @@ public class PostService implements IPostService {
 
 	@Override
 	public List<Post> sort(boolean isDesc) {
-		if (isDesc){
-			return postRepository.findAllByOrderByCreatedAtDesc();
-		}
-		else {
-			return postRepository.findAllByOrderByCreatedAtAsc();
-		}
+		return isDesc ? postRepository.findAllByOrderByCreatedAtDesc()
+				: postRepository.findAllByOrderByCreatedAtAsc();
 	}
 }
