@@ -21,6 +21,7 @@ import java.util.List;
 @ToString
 @Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(of = {"id"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,7 +43,6 @@ public class User {
     @Email
     private String email;
 
-    @NonNull
     @Size(max = 120)
     private String password;
 
@@ -53,5 +53,13 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 
 }

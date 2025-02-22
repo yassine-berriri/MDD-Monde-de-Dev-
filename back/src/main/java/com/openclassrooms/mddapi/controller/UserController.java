@@ -1,13 +1,13 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.service.IUserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("user")
@@ -32,5 +32,18 @@ public class UserController {
 
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody UserDto userDto){
+        try {
+            User user = this.userService.update(Long.valueOf(id), this.userMapper.toEntity(userDto));
+
+            return ResponseEntity.ok().body(this.userMapper.toDto(user));
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
 
 }

@@ -31,12 +31,12 @@ public class Comment {
 	private User user;
 
 
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "post_id", referencedColumnName = "post_id")
 	@JsonBackReference
 	@JsonIgnore
 	private Post post;
+
 
 	@Column(name = "description")
 	private String description;
@@ -50,5 +50,5 @@ public class Comment {
 	private LocalDateTime updatedAt;
 
 
-	
+
 }
