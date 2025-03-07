@@ -15,7 +15,7 @@ import { SessionInformation } from "src/app/interfaces/SessionInformation.interf
     constructor(private httpClient: HttpClient) { }
   
     public register(registerRequest: RegisterRequest): Observable<void> {
-      return this.httpClient.post<void>(`http://localhost:9000/api/auth/register`, registerRequest);
+      return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);
     }
   
     public login(loginRequest: LoginRequest): Observable<SessionInformation> {

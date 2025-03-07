@@ -56,4 +56,8 @@ export class RegisterComponent  {
     );
   }
 
+  public handleLandingPage(): void {
+    this.router.navigate(['/']);
+  }
+
 }

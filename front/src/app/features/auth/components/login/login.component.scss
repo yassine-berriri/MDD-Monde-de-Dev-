@@ -1,0 +1,48 @@
+@import '../../../../../assets/styles/variables';
+
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 30px;
+   
+    mat-card {
+        margin: 20px;
+        max-width: 600px;
+        width: 100%;
+    }
+
+   mat-icon{
+    display: flex;
+    
+   }
+    mat-card-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3%;
+
+        mat-form-field {
+            width: 50%;
+            
+        }
+
+        button {
+            background-color: $primary-color;
+            color: $white-color;
+            cursor: not-allowed; 
+        
+            &:not(:disabled) {
+                cursor: pointer;
+                background-color: darken($primary-color, 10%); 
+                transition: background-color 0.3s ease;
+        
+                &:hover {
+                    background-color: darken($primary-color, 15%);
+                }
+            }
+        }
+        
+        
+    }
+}

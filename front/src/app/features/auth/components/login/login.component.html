@@ -1,1 +1,23 @@
-<p>login works!</p>
+
+<div class="login">
+   
+    <mat-card-header>
+        <mat-card-title><mat-icon  (click)="handleLandingPage()">arrow_back</mat-icon></mat-card-title>
+        <mat-card-title>Se connecter</mat-card-title>
+       
+    </mat-card-header>
+    <form class="login-form" [formGroup]="form" (ngSubmit)="login()">
+        <mat-card-content >
+                <mat-form-field  appearance="outline">
+                    <mat-label>E-mail ou nom d’utilisateur</mat-label>
+                    <input matInput  formControlName="email">
+                </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput  formControlName="password">
+                </mat-form-field>
+            <button mat-raised-button  type="submit" [disabled]="form.invalid">S’inscrire</button>
+            <span *ngIf="onError" class="error ml2">An error occurred</span>
+        </mat-card-content>
+        </form>
+</div>
