@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../interfaces/registerRequest.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -12,7 +13,6 @@ import { RegisterRequest } from '../../interfaces/registerRequest.interface';
 })
 export class RegisterComponent  {
 
-  public onError = false;
 
   public form = this.fb.group({
     email: [
@@ -42,7 +42,8 @@ export class RegisterComponent  {
 
   constructor(private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router) {
+    private router: Router, 
+    private matSnackBar: MatSnackBar) {
 }
 
  
@@ -50,8 +51,20 @@ export class RegisterComponent  {
   public register(): void {
     const registerRequest = this.form.value as RegisterRequest;
     this.authService.register(registerRequest).subscribe({
-        next: (_: void) => this.router.navigate(['/login']),
-        error: _ => this.onError = true,
+        next: (_: void) => { 
+        this.router.navigate(['/login'])
+        this.matSnackBar.open("Your account has been successfully created!", 'Close', { 
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: ['success-snackbar']
+        });
+        
+      },
+        error: _ =>{
+          this.showError(_.message);
+        } ,
+
       }
     );
   }
@@ -59,5 +72,16 @@ export class RegisterComponent  {
   public handleLandingPage(): void {
     this.router.navigate(['/']);
   }
+
+
+  showError(error: String): void {
+    this.matSnackBar.open("Signup failed."+ error + " Please try again! ❌ ", 'Close', { 
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: ['error-snackbar']
+    });
+  }
+  
 
 }

@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../interfaces/loginRequest.interface';
 import { SessionInformation } from 'src/app/interfaces/SessionInformation.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,6 @@ import { SessionInformation } from 'src/app/interfaces/SessionInformation.interf
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    public onError = false;
   
     public form = this.fb.group({
       email: [
@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
       private fb: FormBuilder,
-      private router: Router) {
+      private router: Router,
+      private matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -45,14 +46,32 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginRequest).subscribe({
       next: (response: SessionInformation) => {
         //this.sessionService.logIn(response);
+        this.matSnackBar.open("You have successfully logged in!", 'Close', { 
+          duration: 3000,
+          verticalPosition: 'top', 
+          horizontalPosition: 'center', 
+          panelClass: ['success-snackbar'] 
+        });
+        
         this.router.navigate(['/']);
       },
-      error: error => this.onError = true,
+      error: _ =>{
+        this.showError(_.message);
+      } ,
     });
   }
 
   public handleLandingPage(): void {
     this.router.navigate(['/']);
+  }
+
+  showError(error: String): void {
+    this.matSnackBar.open("Signup failed."+ error + " Please try again! ❌ ", 'Close', { 
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: ['error-snackbar']
+    });
   }
 
 }

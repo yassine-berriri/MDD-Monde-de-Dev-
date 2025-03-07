@@ -26,7 +26,8 @@ const materialModule = [
   MatMenuModule,
   MatSidenavModule,
   MatListModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSnackBarModule
   
 ]
 
