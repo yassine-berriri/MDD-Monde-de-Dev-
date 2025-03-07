@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  
+    <!-- Sidebar (Sidenav) - S'affiche uniquement en mode mobile -->
+    <mat-sidenav #sidenav mode="over" position="end" [opened]="isSidenavOpen" (closed)="isSidenavOpen = false">
+      <mat-nav-list>
+        <a mat-list-item class="logout"  (click)="logout(); closeSidenav()">Se déconnecter</a>
+        <a mat-list-item routerLink="/articles" (click)="closeSidenav()">Articles</a>
+        <a mat-list-item routerLink="/themes" (click)="closeSidenav()">Thèmes</a>
+      
+
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Contenu principal -->
+    <mat-sidenav-content>
+  
+      <!-- Navbar -->
+      <mat-toolbar *ngIf="showNavbar" color="white" class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="assets/logoApp.png" alt="Logo" />
+        </div>
+  
+        <!-- Liens pour grand écran -->
+        <div class="nav-links" *ngIf="!isMobile">
+          <a mat-button class="logout" (click)="logout()">Se déconnecter</a>
+          <a mat-button routerLink="">Articles</a>
+          <a mat-button routerLink="">Thèmes</a>
+          <a mat-list-item><button  mat-icon-button>
+            <mat-icon>person</mat-icon>
+          </button>
+        </a>
+        </div>
+  
+        <!-- Bouton menu pour mobile -->
+        <button mat-icon-button *ngIf="isMobile" (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
+  
+      <!-- Contenu de la page -->
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+  
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
+  

@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  mat-sidenav {
+    width: max-content;
+    background: white;
+  }
+  
+  mat-nav-list a {
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .mat-sidenav {
+      display: none; // Cache la sidenav sur Desktop
+    }
+  }
+  
