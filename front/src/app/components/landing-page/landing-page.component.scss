@@ -1,0 +1,14 @@
+@import "../../../assets/styles/variables";
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5%;
+ 
+    .button{
+        font: $font-primary;
+    }
+
+  
+
+}

@@ -3,12 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { TopicComponent } from './topic/topic.component';
-import { PostComponent } from './features/post/post.component';
-import { LoginComponent } from './features/auth/components/login/login.component';
-import { RegisterComponent } from './features/auth/components/register/register.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './mini-components/navbar/navbar.component';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 const materialModule = [
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatListModule,
+  MatFormFieldModule
   
 ]
 
@@ -16,15 +34,19 @@ const materialModule = [
   declarations: [
     AppComponent,
     TopicComponent,
-    PostComponent,
-    LoginComponent,
-    RegisterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    NavbarComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ...materialModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

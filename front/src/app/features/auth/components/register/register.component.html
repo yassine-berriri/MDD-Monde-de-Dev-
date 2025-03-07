@@ -1,1 +1,27 @@
-<p>register works!</p>
+
+<div class="register">
+   
+    <mat-card-header>
+        <mat-card-title><mat-icon>arrow_back</mat-icon></mat-card-title>
+        <mat-card-title>Inscription</mat-card-title>
+       
+    </mat-card-header>
+    <form class="register-form" [formGroup]="form" (ngSubmit)="register()">
+        <mat-card-content >
+                <mat-form-field  appearance="outline">
+                    <mat-label>Nom d'utilisateur</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Adresse e-mail</mat-label>
+                    <input matInput  formControlName="email">
+                </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput  formControlName="password">
+                </mat-form-field>
+            <button mat-raised-button  type="submit" [disabled]="form.invalid">S’inscrire</button>
+            <span *ngIf="onError" class="error ml2">An error occurred</span>
+        </mat-card-content>
+        </form>
+</div>
