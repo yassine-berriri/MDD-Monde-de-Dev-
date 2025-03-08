@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.controller;
 
 import java.util.List;
 
+import com.openclassrooms.mddapi.mapper.TopicMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +14,19 @@ import com.openclassrooms.mddapi.service.ITopicService;
 public class TopicController {
 	
 	private ITopicService topicService;
+
+	private final TopicMapper topicMapper;
 	
-	public TopicController(ITopicService topicService) {
-		this.topicService = topicService;		
+	public TopicController(ITopicService topicService, TopicMapper topicMapper) {
+		this.topicService = topicService;
+		this.topicMapper = topicMapper;
 	}
 
 	@GetMapping
-	public List<Topic> getTopics() {
-		return topicService.getTopics();
+	public ResponseEntity<?> getTopics() {
+		List<Topic>  topics =  topicService.getTopics();
+
+		return ResponseEntity.ok().body(this.topicMapper.toDto(topics));
 	}
 
 	@PostMapping("{id}/subscribe/{userId}")
