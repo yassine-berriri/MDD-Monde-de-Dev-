@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { TopicComponent } from './topic/topic.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +16,9 @@ import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TopicRoutingModule } from './features/topics/topic-routing.module';
+
 const materialModule = [
   MatButtonModule,
   MatCardModule,
@@ -34,7 +36,6 @@ const materialModule = [
 @NgModule({
   declarations: [
     AppComponent,
-    TopicComponent,
     LandingPageComponent,
     NavbarComponent,
   ],
@@ -43,10 +44,11 @@ const materialModule = [
     BrowserAnimationsModule,
     HttpClientModule,
     ...materialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TopicRoutingModule
   ],
   providers: [
-    //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

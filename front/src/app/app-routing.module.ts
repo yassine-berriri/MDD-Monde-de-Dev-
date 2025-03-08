@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UnauthGuardTsGuard } from './guards/unauth.guard.ts.guard';
+
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { UnauthGuard } from './guards/unauth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,8 +18,13 @@ const routes: Routes = [
   },
   {
     path: '',
-   // canActivate: [UnauthGuardTsGuard],
+    canActivate: [UnauthGuard],
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'topics',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/topics/topics.module').then(m => m.TopicsModule)
   }
 ]
 

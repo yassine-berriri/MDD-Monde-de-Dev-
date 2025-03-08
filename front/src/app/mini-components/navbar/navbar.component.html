@@ -17,7 +17,7 @@
           <img src="assets/logoApp.png" alt="Logo" />
         </div>
   
-        <div class="nav-links" *ngIf="!isMobile">
+        <div class="nav-links" *ngIf="!isMobile && ($isLogged() | async)">
           <a mat-button class="logout" (click)="logout()">Se déconnecter</a>
           <a mat-button routerLink="">Articles</a>
           <a mat-button routerLink="">Thèmes</a>

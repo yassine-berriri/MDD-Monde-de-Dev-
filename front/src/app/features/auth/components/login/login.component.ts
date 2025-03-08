@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../../interfaces/loginRequest.interface';
 import { SessionInformation } from 'src/app/interfaces/SessionInformation.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
       private fb: FormBuilder,
       private router: Router,
-      private matSnackBar: MatSnackBar) {
+      private matSnackBar: MatSnackBar,
+      private sessionService: SessionService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
     const loginRequest = this.form.value as LoginRequest;
     this.authService.login(loginRequest).subscribe({
       next: (response: SessionInformation) => {
-        //this.sessionService.logIn(response);
+        this.sessionService.logIn(response);
         this.matSnackBar.open("You have successfully logged in!", 'Close', { 
           duration: 3000,
           verticalPosition: 'top', 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
           panelClass: ['success-snackbar'] 
         });
         
-        this.router.navigate(['/']);
+        this.router.navigate(['/topics']);
       },
       error: _ =>{
         this.showError(_.message);

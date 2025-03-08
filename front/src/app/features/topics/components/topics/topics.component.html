@@ -1,1 +1,7 @@
 <p>topics works!</p>
+
+
+<ul *ngFor="let topic of (topics$ | async)">
+    <p>{{topic.name}}</p>
+
+</ul>
