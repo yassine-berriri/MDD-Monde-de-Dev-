@@ -65,6 +65,7 @@ private readonly IS_LOGGED_KEY = 'isLogged';
   private clearSessionFromStorage(): void {
     localStorage.removeItem(this.SESSION_STORAGE_KEY);
     localStorage.removeItem(this.IS_LOGGED_KEY);
+    //a
   }
 
 }
