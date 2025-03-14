@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", uses = {PostService.class, UserService.class}, imports = { Post.class, User.class, Optional.class})
-public abstract class CommentMapper {
+public abstract class CommentMapper implements EntityMapper<CommentDto, Comment>{
 
     @Autowired
     protected PostService postService;

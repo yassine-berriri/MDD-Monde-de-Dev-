@@ -41,6 +41,8 @@ public class PostController {
 
     }
 
+
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getPostById(@PathVariable("id") String id) {
         try {
@@ -61,6 +63,17 @@ public class PostController {
         boolean isDescBoolean = (isDesc != null && (isDesc.equalsIgnoreCase("true,") || isDesc.equalsIgnoreCase("true,true")));
 
         return postService.sort(isDescBoolean);
+    }
+
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getPostsByUserId(@PathVariable("userId") String userId) {
+        try {
+            List<Post> posts = postService.findByUserId(Long.valueOf(userId));
+            return ResponseEntity.ok().body(this.postMapper.toDto(posts));
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 

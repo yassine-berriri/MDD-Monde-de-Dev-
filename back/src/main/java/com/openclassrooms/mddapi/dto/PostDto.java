@@ -35,7 +35,7 @@ public class PostDto {
     private String description;
 
 
-    private List<Comment> comments;
+    private List<Long> comments_id;
 
 
     private LocalDateTime createdAt;

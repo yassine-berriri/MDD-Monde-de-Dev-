@@ -68,4 +68,8 @@ public class TopicService implements ITopicService {
         return topicRepository.findById(id).orElse(null);
     }
 
+    public List<Long> getIdByUserId(Long userId) {
+        return topicRepository.findAll().stream().filter(topic -> topic.getUsers().stream().anyMatch(user -> user.getId().equals(userId))).map(Topic::getId).collect(Collectors.toList());
+    }
+
 }

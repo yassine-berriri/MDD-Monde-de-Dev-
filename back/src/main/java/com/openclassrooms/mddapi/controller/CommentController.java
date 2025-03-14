@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("comment")
+@RequestMapping("api/comment")
 @Log4j2
 public class CommentController {
 
@@ -30,4 +31,20 @@ public class CommentController {
 
         return ResponseEntity.ok().body(this.commentMapper.toDto(comment));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCommentByPostId(@PathVariable("id") String id){
+        try {
+            List<Comment> comments = this.commentService.getById(Long.valueOf(id));
+
+            if (comments == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            return ResponseEntity.ok().body(this.commentMapper.toDto(comments));
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
