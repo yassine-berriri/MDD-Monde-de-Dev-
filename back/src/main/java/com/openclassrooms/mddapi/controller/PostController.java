@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/post")
+@RequestMapping("api/post")
 @Log4j2
 public class PostController {
 

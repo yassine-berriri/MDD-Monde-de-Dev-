@@ -32,7 +32,7 @@ public class TopicService implements ITopicService {
     @Override
     public void subscribe(Long id, Long userId) {
         Topic topic = this.topicRepository.findById(id).orElse(null);
-        User user = this.userRepository.findById(id).orElse(null);
+        User user = this.userRepository.findById(userId).orElse(null);
         if (topic == null || user == null) {
             throw new NotFoundException();
         }
