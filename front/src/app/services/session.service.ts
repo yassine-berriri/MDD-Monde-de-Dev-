@@ -13,11 +13,19 @@ private readonly IS_LOGGED_KEY = 'isLogged';
 
   public isLogged = false;
   public sessionInformation: SessionInformation | undefined;
+  private isReadySubject = new BehaviorSubject<boolean>(false);
+
 
   private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
 
   constructor() {
     this.loadSessionFromStorage();
+    this.isReadySubject.next(true);
+
+  }
+
+  public isReady(): Observable<boolean> {
+    return this.isReadySubject.asObservable();
   }
 
   public $isLogged(): Observable<boolean> {
@@ -44,28 +52,48 @@ private readonly IS_LOGGED_KEY = 'isLogged';
 
 
   private saveSessionToStorage(): void {
+    
     if (this.sessionInformation) {
       localStorage.setItem(this.SESSION_STORAGE_KEY, JSON.stringify(this.sessionInformation));
     }
     localStorage.setItem(this.IS_LOGGED_KEY, JSON.stringify(this.isLogged));
+    
   }
 
   private loadSessionFromStorage(): void {
+    
     const sessionData = localStorage.getItem(this.SESSION_STORAGE_KEY);
     const isLoggedData = localStorage.getItem(this.IS_LOGGED_KEY);
-    
+  
+    console.log("Session data from storage:", sessionData);  
+    console.log("Is logged from storage:", isLoggedData);  
+  
     this.isLogged = isLoggedData ? JSON.parse(isLoggedData) : false;
-    
+  
     if (sessionData && this.isLogged) {
-      this.sessionInformation = JSON.parse(sessionData);
-      this.next();
+      try {
+        this.sessionInformation = JSON.parse(sessionData);
+        if (!this.sessionInformation?.token) {
+          throw new Error("Token is missing after refresh");
+        }
+        this.next();
+      } catch (error) {
+        console.error("Error loading session from storage:", error);
+        this.sessionInformation = undefined;
+        this.isLogged = false;
+        this.clearSessionFromStorage();
+      }
     }
+  
+    console.log("Token after loading:", this.sessionInformation?.token);
+    
   }
+  
 
   private clearSessionFromStorage(): void {
     localStorage.removeItem(this.SESSION_STORAGE_KEY);
     localStorage.removeItem(this.IS_LOGGED_KEY);
-    //a
+    
   }
 
 }

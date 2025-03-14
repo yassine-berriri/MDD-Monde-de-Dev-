@@ -1,7 +1,22 @@
-<p>topics works! aaaa</p>
 
-
-<ul *ngFor="let topic of (topics$ | async)">
-    <p>{{topic.name}}</p>
-
-</ul>
+<div class="list">
+    <mat-card class="topic-card" *ngFor="let topic of (topics$ | async)">
+      <mat-card-header>
+        <mat-card-title>{{ topic.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ topic.description }}
+        </p>
+      </mat-card-content> 
+      <mat-card-actions>
+        <button
+    (click)="subscribe(topic)" 
+  mat-raised-button
+  [ngClass]="{'subscribed': isUserSubscribed(topic), 'not-subscribed': !isUserSubscribed(topic)}">
+  {{ isUserSubscribed(topic) ? 'Déjà abonné' : 'S\'abonner' }}
+</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

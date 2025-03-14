@@ -11,28 +11,14 @@
     }
 }
 
-.topic-card{
+.post-card{
     width: 100%;
     background-color:$background-color ;
     box-shadow: none;
     border-radius: 8px;
 }
 
-button {
-    border-radius: 8px;
 
-    width: 30%;
-
-    &.subscribed{
-        background-color: $grey-color;
-        color: white;
-    }
-
-    &.not-subscribed{
-        background-color: $primary-color;
-        color: white;
-    }
-}
 
 .mat-card-actions{
     display: flex;
@@ -43,5 +29,17 @@ button {
     margin-left: 3%;
     margin-right: 3%;
 
+}
+
+.subtitle{
+    display: flex;
+    
+}
+
+
+
+.mat-card-subtitle{
+    display: flex;
+    justify-content: space-around;
 }
 

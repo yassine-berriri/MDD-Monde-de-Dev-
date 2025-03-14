@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
 
 const materialModule = [
   MatButtonModule,
@@ -37,7 +39,7 @@ const materialModule = [
   imports: [
     
     CommonModule,
-    RouterModule,
+    
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
