@@ -1,0 +1,32 @@
+
+<div class="login">
+   
+    <mat-card-header>
+        <mat-icon  (click)="handleLandingPage()">arrow_back</mat-icon>
+        <mat-card-title>Créer un nouvel article</mat-card-title>
+       
+    </mat-card-header>
+    <form class="login-form" [formGroup]="form" (ngSubmit)="create()">
+        <mat-card-content >
+            <mat-form-field  appearance="outline">
+                <mat-label>Sélectionner un thème</mat-label>
+                <mat-select formControlName="topic">
+                    <mat-option *ngFor="let topic of topics$ | async" [value]="topic.id">
+                        {{ topic.name }}
+                    </mat-option>                
+                </mat-select>
+
+            </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <input matInput placeholder="Titre de l’article"  formControlName="title">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description de l’article</mat-label>
+                    <textarea matInput formControlName="description" rows="5"></textarea>
+                    <mat-error *ngIf="form.get('description')?.hasError('required')">La description est requise.</mat-error>
+                    <mat-error *ngIf="form.get('description')?.hasError('minlength')">La description doit contenir au moins 3 caractères.</mat-error>
+                </mat-form-field>
+            <button mat-raised-button  type="submit" [disabled]="form.invalid">Créer</button>
+        </mat-card-content>
+        </form>
+</div>

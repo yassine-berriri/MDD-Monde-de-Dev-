@@ -18,6 +18,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TopicRoutingModule } from './features/topics/topic-routing.module';
+import { TopicsModule } from './features/topics/topics.module';
 
 const materialModule = [
   MatButtonModule,
@@ -45,7 +46,8 @@ const materialModule = [
     HttpClientModule,
     ...materialModule,
     AppRoutingModule,
-    TopicRoutingModule
+    TopicRoutingModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

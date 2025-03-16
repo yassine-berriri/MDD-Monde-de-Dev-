@@ -1,10 +1,30 @@
 @import '../../../../../assets/styles/variables';
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.add-post-button {
+    border-radius: 8px;
+    background-color: $primary-color;
+    color: white;
+}
+
+
 
 .list{
     display: grid;
     grid-template-columns: repeat(2, 3fr);
     grid-gap: 20px;
-    padding: 4%;
+    margin-top:3% ;
+    //padding: 4%;
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);

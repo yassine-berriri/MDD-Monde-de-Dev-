@@ -11,8 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./topics.component.scss']
 })
 export class TopicsComponent implements OnInit {
-
+  sortOrder: 'asc' | 'desc' = 'desc';
   public topics$: Observable<Topic[]> | undefined;
+
   constructor(private topicService: TopicApiService, private sessionService: SessionService,
     private matSnackBar: MatSnackBar
   ) { }

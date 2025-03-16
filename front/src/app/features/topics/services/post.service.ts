@@ -23,6 +23,10 @@ export class PostApiService {
     return this.httpClient.get<Post[]>(`${this.pathService}/user/${userId}`);
   }
 
+  public create(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(`${this.pathService}`, post);
+  }
+
   
 
 
