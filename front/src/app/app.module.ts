@@ -20,6 +20,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TopicRoutingModule } from './features/topics/topic-routing.module';
 import { TopicsModule } from './features/topics/topics.module';
 import { MeComponent } from './components/me/me.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 const materialModule = [
   MatButtonModule,
@@ -31,7 +33,8 @@ const materialModule = [
   MatSidenavModule,
   MatListModule,
   MatFormFieldModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatInputModule 
   
 ]
 
@@ -49,6 +52,7 @@ const materialModule = [
     ...materialModule,
     AppRoutingModule,
     TopicRoutingModule,
+    ReactiveFormsModule 
     
   ],
   providers: [

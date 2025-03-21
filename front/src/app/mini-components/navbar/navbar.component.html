@@ -5,7 +5,7 @@
         <a mat-list-item class="logout"  (click)="logout(); closeSidenav()">Se déconnecter</a>
         <a mat-list-item routerLinkActive="active-link" routerLink="topics/posts" (click)="closeSidenav()">Articles</a>
         <a mat-list-item routerLinkActive="active-link" routerLink="topics" (click)="closeSidenav()">Thèmes</a>
-      
+        <a mat-list-item routerLinkActive="active-link" routerLink="me" (click)="closeSidenav()">Me</a>
 
       </mat-nav-list>
     </mat-sidenav>
@@ -21,7 +21,7 @@
           <a mat-button class="logout" (click)="logout()">Se déconnecter</a>
           <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="topics/posts">Articles</a>
           <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="topics">Thèmes</a>
-          <a mat-list-item><button  mat-icon-button>
+          <a mat-list-item  routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="me" ><button  mat-icon-button>
             <mat-icon>person</mat-icon>
           </button>
         </a>

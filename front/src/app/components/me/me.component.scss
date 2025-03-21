@@ -1,0 +1,102 @@
+@import '../../../assets/styles/variables';
+
+.me {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 30px;
+   
+    mat-card {
+        margin: 20px;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    mat-card-header{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+   mat-icon{
+    display: flex;
+    
+   }
+    mat-card-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3%;
+
+        mat-form-field {
+            width: 50%;
+            
+        }
+
+    
+        
+        
+    }
+}
+
+button {
+    background-color: $primary-color;
+    color: $white-color;
+    cursor: not-allowed; 
+
+    &:not(:disabled) {
+        cursor: pointer;
+        background-color: darken($primary-color, 10%); 
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($primary-color, 15%);
+        }
+    }
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-gap: 20px;
+    padding: 4%;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.topic-card{
+    width: 100%;
+    background-color:$background-color ;
+    box-shadow: none;
+    border-radius: 8px;
+}
+
+button {
+    border-radius: 8px;
+
+    width: 30%;
+
+    &.subscribed{
+        background-color: $grey-color;
+        color: white;
+    }
+
+    &.not-subscribed{
+        background-color: $primary-color;
+        color: white;
+    }
+}
+
+.mat-card-actions{
+    display: flex;
+    justify-content: center;
+}
+
+.mat-card-content{
+    margin-left: 3%;
+    margin-right: 3%;
+
+}
+

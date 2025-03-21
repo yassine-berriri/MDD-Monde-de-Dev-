@@ -14,4 +14,6 @@ public interface ITopicService {
 	void unSubscribe(Long id, Long userId);
 
 	 Topic findById(Long id);
+
+	List<Topic>  getSubscribedTopicsByUserId(Long id);
 }

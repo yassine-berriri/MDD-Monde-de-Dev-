@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -10,9 +11,12 @@ import javax.persistence.EntityNotFoundException;
 public class UserService implements IUserService{
 
     UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    UserService(UserRepository userRepository){
+
+    UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -27,6 +31,9 @@ public class UserService implements IUserService{
 
         existingUser.setEmail(user.getEmail());
         existingUser.setName(user.getName());
+        if (user.getPassword() != null){
+            existingUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        }
 
         return userRepository.save(existingUser);
     }

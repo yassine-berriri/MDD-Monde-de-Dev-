@@ -50,6 +50,16 @@ public class TopicController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+
+	@GetMapping ("subscribed/{id}")
+	public ResponseEntity<?> getSubscribedTopicsByUserId(@PathVariable("id") String id){
+		try {
+			List<Topic> topics = topicService.getSubscribedTopicsByUserId(Long.valueOf(id));
+			return ResponseEntity.ok().body(this.topicMapper.toDto(topics));
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
 	
 	
 }

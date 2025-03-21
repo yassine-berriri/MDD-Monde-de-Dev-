@@ -26,6 +26,10 @@ export class TopicApiService {
     return this.httpClient.post<void>(`${this.pathService}/${topicId}/unSubscribe/${userId}`, null);
   }
 
+  public getSubscribedTopicsByUserId(id: string): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>(`${this.pathService}/subscribed/${id}`);
+  }
+
 
     
 
