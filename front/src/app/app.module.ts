@@ -19,6 +19,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TopicRoutingModule } from './features/topics/topic-routing.module';
 import { TopicsModule } from './features/topics/topics.module';
+import { MeComponent } from './components/me/me.component';
 
 const materialModule = [
   MatButtonModule,
@@ -39,6 +40,7 @@ const materialModule = [
     AppComponent,
     LandingPageComponent,
     NavbarComponent,
+    MeComponent,
   ],
   imports: [
     BrowserModule,

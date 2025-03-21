@@ -7,12 +7,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "posts")
 @NoArgsConstructor
@@ -46,7 +48,7 @@ public class Post {
 	private List<Comment> comments;
 
 	@CreatedDate
-	@Column(name = "created_at", updatable = false)
+	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
 	@UpdateTimestamp

@@ -18,6 +18,7 @@ import { MatSelectionList } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { TopicApiService } from './services/topic.service';
 import { PostApiService } from './services/post.service';
+import { DetailsPostComponent } from './components/details-post/details-post.component';
 
 
 const materialModule = [
@@ -37,6 +38,7 @@ const materialModule = [
     TopicsComponent,
     PostsComponent,
     CreatePostComponent,
+    DetailsPostComponent,
     
   ],
   exports: [

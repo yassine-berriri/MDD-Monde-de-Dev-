@@ -5,5 +5,6 @@ export interface Comment {
     description: string;
     createdAt?: Date;
     updatedAt?: Date;
+    username: string;
 
 }

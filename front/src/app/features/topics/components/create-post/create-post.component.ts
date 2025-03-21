@@ -13,6 +13,7 @@ import { SessionService } from 'src/app/services/session.service';
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss'],
+  providers: [FormBuilder]
 })
 export class CreatePostComponent implements OnInit {
   public topics$ = this.topicService.all()

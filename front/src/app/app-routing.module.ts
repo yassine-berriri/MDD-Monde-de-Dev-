@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { UnauthGuard } from './guards/unauth.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { MeComponent } from './components/me/me.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'landingPage',
     component: LandingPageComponent
+  },
+  {
+    path: 'me',
+    component: MeComponent
   },
   {
     path: '',

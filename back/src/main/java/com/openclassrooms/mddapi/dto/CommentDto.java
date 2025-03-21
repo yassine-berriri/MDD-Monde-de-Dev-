@@ -30,6 +30,4 @@ public class CommentDto {
 
     private LocalDateTime updatedAt;
 
-
-
 }

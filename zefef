@@ -1,0 +1,71 @@
+[33mcommit 7d9f020038ecca23dc5e16ea51ea8def6278c667[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Mar 7 06:29:13 2025 +0100
+
+    add register component
+
+[33mcommit a6223be2654c2d6e1579ce87bcc585a4d83d3d26[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Mar 7 02:14:24 2025 +0100
+
+    add navbar
+
+[33mcommit 3203151f1309f6498bf6ea99f15e8ece5e036708[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Thu Mar 6 14:07:21 2025 +0100
+
+    add startup
+
+[33mcommit 71587d948a6f392cb5848a0efcffc88293c68146[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Thu Mar 6 14:04:54 2025 +0100
+
+    add startup
+
+[33mcommit f2809999b034d6706cc4ea79b8e41aae7565dae8[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Sat Feb 22 22:28:07 2025 +0100
+
+    add authController & spring Security
+
+[33mcommit cc5308f1b952a13385ed310cadebab99487111aa[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Feb 21 19:26:49 2025 +0100
+
+    add comment api
+
+[33mcommit 7afac65cc4ebc68f0193219e2aea37d9fcd0367b[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Feb 21 11:56:43 2025 +0100
+
+    add userController
+
+[33mcommit a04d06bc35eeeb6957947ddef5b66807597f28ca[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Feb 21 11:24:15 2025 +0100
+
+    fix sort post api
+
+[33mcommit b1d1019fc60934330f748dc78cfb1aa0db43ce5b[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Feb 21 10:30:33 2025 +0100
+
+    add postController
+
+[33mcommit b552d1029bfe5d5f6d03ddb6cc2606d04adf5da8[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Thu Feb 20 23:34:39 2025 +0100
+
+    add topicController
+
+[33mcommit a698e4ec518921120eb34db6fa7381f4132b731d[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Thu Feb 20 18:47:17 2025 +0100
+
+    update topic model
+
+[33mcommit 7a034b444b610dff38a73eefffaa9532b18ee987[m
+Author: yassineBr12 <yassine.berriri@etu.univ-cotedazur.fr>
+Date:   Fri Feb 14 16:33:13 2025 +0100
+
+    add models

@@ -1,0 +1,50 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon  (click)="back()">arrow_back</mat-icon>
+    <mat-card-title>Titre de l'article sélectionné</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="article-info">
+      <div>{{ post?.createdAt | date: 'longDate' }}</div>
+      <div> {{ post?.author }}</div>
+      <div> {{ post?.topic }}</div>
+    </div>
+
+    <div class="content">
+      <p>Content: {{ post?.description }}</p>
+    </div>
+
+    <hr>
+
+    <div class="comments-section">
+        <h3>Commentaires</h3>
+        <div class="comments-content">
+        <div  class="comment-list" *ngFor="let comment of comments">
+          <div class="comment">
+            <p class="comment-author">{{comment?.username}}</p>
+            <p class="comment-description">{{ comment?.description }}</p>
+          </div>
+        </div>
+
+        <form class="comment-form" [formGroup]="form" (ngSubmit)="submitComment()">
+            <div class="input-container">
+              <mat-form-field appearance="outline" class="custom-textarea">
+                <textarea matInput formControlName="description" placeholder="Écrivez ici votre commentaire"></textarea>
+              </mat-form-field>
+          
+              <button mat-icon-button type="submit" [disabled]="form.invalid" class="send-button">
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+          
+            <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid" class="error-messages">
+              <small *ngIf="form.get('description')?.errors?.['minlength']">Minimum 3 characters.</small>
+            </div>
+          </form>
+          
+          
+        </div>
+      </div>
+</mat-card-content>
+</mat-card>

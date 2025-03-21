@@ -38,7 +38,7 @@ public abstract class CommentMapper implements EntityMapper<CommentDto, Comment>
     @Mappings({
             @Mapping(source = "description", target = "description"),
             @Mapping(source = "post.id", target = "post_id"),
-            @Mapping(source = "user.id", target = "user_id")
+            @Mapping(source = "user.id", target = "user_id"),
     })
     public abstract CommentDto toDto(Comment comment);
 }

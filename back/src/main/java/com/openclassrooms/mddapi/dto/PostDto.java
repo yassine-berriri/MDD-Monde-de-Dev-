@@ -26,6 +26,10 @@ public class PostDto {
     @NotNull
     private Long user_id;
 
+    private String author;
+
+    private String topic;
+
     @NotNull
     @Size(max = 2500)
     private String title;
