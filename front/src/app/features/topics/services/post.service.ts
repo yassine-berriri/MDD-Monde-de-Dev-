@@ -32,6 +32,10 @@ export class PostApiService {
     return this.httpClient.get<Post>(`${this.pathService}/${id}`);
   }
 
+  public getSortedPost(isDesc : string): Observable<Post[]>{
+    return this.httpClient.get<Post[]>(`${this.pathService}/sort?isDesc=${isDesc}`)
+  }
+
   
 
 

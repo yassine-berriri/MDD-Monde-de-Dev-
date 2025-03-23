@@ -35,6 +35,7 @@ export class PostsComponent implements OnInit {
   }
 
   sortPosts(): void {
+    /*
     this.posts = this.posts.sort((a, b) =>
       this.sortOrder === 'asc'
         ? a.title.localeCompare(b.title) // Trier par date croissante
@@ -45,6 +46,13 @@ export class PostsComponent implements OnInit {
       observer.next(this.posts);
       observer.complete();
     });
+    */
+   if (this.sortOrder === 'asc'){
+    this.posts$ = this.postService.getSortedPost("true");
+   }
+   else {
+    this.posts$ = this.postService.getSortedPost("false");
+   }
   }
  
 
