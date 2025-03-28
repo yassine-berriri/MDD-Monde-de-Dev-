@@ -30,26 +30,17 @@ public class UserController {
     }
 
     @GetMapping ("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable("id") String id){
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") String id){
         User user = this.userService.findById(Long.valueOf(id));
 
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody UserDto userDto){
-        try {
+    public ResponseEntity<UserDto> update(@PathVariable("id") String id, @Valid @RequestBody UserDto userDto){
             User user = this.userService.update(Long.valueOf(id), this.userMapper.toEntity(userDto));
-
             return ResponseEntity.ok().body(this.userMapper.toDto(user));
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
-
     }
 
 

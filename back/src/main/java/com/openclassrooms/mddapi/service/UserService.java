@@ -1,7 +1,10 @@
 package com.openclassrooms.mddapi.service;
 
+import com.openclassrooms.mddapi.exception.BadRequestException;
+import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,10 @@ public class UserService implements IUserService{
 
     @Override
     public User findById(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            throw new NotFoundException("user not found");
+        }
         return userRepository.findById(userId).orElse(null);
     }
 
@@ -36,6 +43,14 @@ public class UserService implements IUserService{
         }
 
         return userRepository.save(existingUser);
+    }
+
+    @Override
+    public User save(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new BadRequestException("Email already in use");
+        }
+        return this.userRepository.save(user);
     }
 
 

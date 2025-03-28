@@ -1,7 +1,9 @@
 package com.openclassrooms.mddapi.service;
 
+import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.model.Comment;
 import com.openclassrooms.mddapi.repository.CommentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +31,12 @@ public class CommentService implements ICommentService {
 
     @Override
     public List<Comment> getById(Long postId) {
-        return commentRepository.findAll().stream()
+        List<Comment> comments = commentRepository.findAll().stream()
                 .filter(comment -> comment.getPost().getId().equals(postId))
                 .collect(Collectors.toList());
+        if (comments == null) {
+            throw new NotFoundException("no comments");
+        }
+        return comments;
     }
 }

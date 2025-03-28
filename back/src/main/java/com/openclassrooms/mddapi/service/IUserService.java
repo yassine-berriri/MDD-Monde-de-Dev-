@@ -7,5 +7,7 @@ public interface IUserService {
  User findById(Long id);
  User update(Long id, User user);
 
+ User save(User user);
+
 
 }

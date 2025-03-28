@@ -25,7 +25,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody CommentDto commentDto){
+    public ResponseEntity<CommentDto> create(@Valid @RequestBody CommentDto commentDto){
         Comment comment = this.commentService.create(this.commentMapper.toEntity(commentDto));
         log.info(comment);
 
@@ -33,13 +33,9 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCommentByPostId(@PathVariable("id") String id){
+    public ResponseEntity<List<CommentDto>> getCommentByPostId(@PathVariable("id") String id){
         try {
             List<Comment> comments = this.commentService.getById(Long.valueOf(id));
-
-            if (comments == null) {
-                return ResponseEntity.notFound().build();
-            }
 
             return ResponseEntity.ok().body(this.commentMapper.toDto(comments));
         } catch (NumberFormatException e) {

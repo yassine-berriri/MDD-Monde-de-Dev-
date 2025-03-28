@@ -34,12 +34,12 @@ public class TopicService implements ITopicService {
         Topic topic = this.topicRepository.findById(id).orElse(null);
         User user = this.userRepository.findById(userId).orElse(null);
         if (topic == null || user == null) {
-            throw new NotFoundException();
+            throw new NotFoundException("error");
         }
 
         boolean alreadyParticipate = topic.getUsers().stream().anyMatch(o -> o.getId().equals(userId));
         if (alreadyParticipate) {
-            throw new BadRequestException();
+            throw new BadRequestException("already Participate");
         }
 
         topic.getUsers().add(user);
@@ -51,12 +51,12 @@ public class TopicService implements ITopicService {
     public void unSubscribe(Long id, Long userId) {
         Topic topic = this.topicRepository.findById(id).orElse(null);
         if (topic == null) {
-            throw new NotFoundException();
+            throw new NotFoundException("topic not found");
         }
 
         boolean alreadyParticipate = topic.getUsers().stream().anyMatch(o -> o.getId().equals(userId));
         if (!alreadyParticipate) {
-            throw new BadRequestException();
+            throw new BadRequestException("Not already Participate");
         }
 
         topic.setUsers(topic.getUsers().stream().filter(user -> !user.getId().equals(userId)).collect(Collectors.toList()));

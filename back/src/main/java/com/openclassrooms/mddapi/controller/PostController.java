@@ -32,48 +32,35 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPost(@Valid @RequestBody PostDto postDto) {
-        log.info(postDto);
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto) {
         Post post = this.postService.create(this.postMapper.toEntity(postDto));
-        log.info(post);
 
         return ResponseEntity.ok().body(this.postMapper.toDto(post));
-
     }
 
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPostById(@PathVariable("id") String id) {
-        try {
+    public ResponseEntity<PostDto> getPostById(@PathVariable("id") String id) {
+
             Post post = this.postService.getById(Long.valueOf(id));
 
-            if (post == null) {
-                return ResponseEntity.notFound().build();
-            }
-
             return ResponseEntity.ok().body(this.postMapper.toDto(post));
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
+
     }
 
     @GetMapping("/sort")
     public List<Post> getSortedPosts(@RequestParam(name = "isDesc", required = false, defaultValue = "false") String isDesc) {
-        boolean isDescBoolean = (isDesc != null && (isDesc.equalsIgnoreCase("true,") || isDesc.equalsIgnoreCase("true,true")));
+        boolean isDescBoolean = (isDesc != null && (isDesc.equalsIgnoreCase("true,") || isDesc.equalsIgnoreCase("true,true") || isDesc.equalsIgnoreCase("true")));
 
         return postService.sort(isDescBoolean);
     }
 
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getPostsByUserId(@PathVariable("userId") String userId) {
-        try {
+    public ResponseEntity<List<PostDto>> getPostsByUserId(@PathVariable("userId") String userId) {
             List<Post> posts = postService.findByUserId(Long.valueOf(userId));
             return ResponseEntity.ok().body(this.postMapper.toDto(posts));
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
 

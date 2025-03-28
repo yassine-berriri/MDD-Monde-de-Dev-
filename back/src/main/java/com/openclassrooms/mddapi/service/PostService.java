@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.PostDto;
+import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.mapper.PostMapper;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;
@@ -39,7 +40,11 @@ public class PostService implements IPostService {
 
 	@Override
 	public Post getById(Long id) {
-		return postRepository.getById(id);
+		Post post = this.postRepository.getById(id);
+		if (post == null) {
+			throw new NotFoundException("post not fount");
+		}
+		return post;
 	}
 
 	@Override
